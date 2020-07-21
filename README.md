@@ -17,6 +17,7 @@ Hawaii has the lowest voter registration percentage in the United States. The ho
     - Campaign websites
 - Local Election News
 
+
 ### User Story
 ```
 As a eligible (potentially unregistered) voter in Hawaii
@@ -25,22 +26,23 @@ So that I can vote in an informed and confident manner.
 ```
 
 ### Wireframe
-
+![Application Wireframe](voter-dashboard-wireframe.png)
 
 
 ### APIs
 
 - Information on candidates and how their campaigns are funded.
-    [text link](https://api.data.gov/docs/fec/)
+    [Federal Election Commission](https://api.data.gov/docs/fec/)
 
 - Information on candidates at various levels of government based on location. Also includes polling locations, times, local elections, etc.
-    [text link](https://developers.google.com/civic-information)
+    [Google Civic Information](https://developers.google.com/civic-information)
 
 - Associated Press API. Will pull articles to populate app's News Feed with election news.
-    [text link](https://developer.ap.org/)
+    [Associated Press](https://developer.ap.org/)
 
 - GIFs returned for related searches (this is a potential API we're looking to incorporate into our app. High chance this is out of scope)
-    [text link](https://developers.giphy.com/docs/api)
+    [Giphy](https://developers.giphy.com/docs/api)
+
 
 ### Tasks
 - API/Back End Team
