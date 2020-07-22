@@ -1,5 +1,5 @@
 # VOTER DASHBOARD PROJECT (Cool name pending)
-## William Tutein, Ruth Schumaker, Judy Naegeli, Medina, and Chris Parker
+## William Tutein, Ruth Schumaker, Judy Naegeli, Medina Khedir, and Chris Parker
 
 ### Project Description
 Hawaii has the lowest voter registration percentage in the United States. The hope of this application is to provide Hawaiian voters with the following public information.
@@ -57,5 +57,3 @@ So that I can vote in an informed and confident manner.
     Judy
 - Testing
     Front end tests Back end, vice versa
-
-
