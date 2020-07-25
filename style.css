@@ -1,7 +1,7 @@
 
 .subnav-hero-section {
     text-align: center;
-    background: #1779ba;
+    background: #008457;
     background-size: cover;
     position: relative;
     overflow: visible;
@@ -18,7 +18,9 @@
   }
   
   .subnav-hero-section .subnav-hero-headline {
-    color: #fefefe;
+    color: white;
+    font-family: 'Playfair Display SC', serif;
+    font-size: 72px;
   }
   
   .subnav-hero-subnav {
@@ -38,6 +40,7 @@
   .subnav-hero-subnav li a {
     padding: 0.9rem 1rem;
     font-size: 0.75rem;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: #fefefe;
     text-transform: uppercase;
     display: block;
@@ -54,4 +57,26 @@
     background: rgba(254, 254, 254, 0.15);
   }
   
-  
+  .menu-text {
+    font-family: 'Playfair Display SC', serif;
+    font-size: 24px;
+  }
+
+.input-group {
+  justify-content: center;
+  margin: 50px;
+  width: 33.3%;
+  align-self: center;
+}
+
+.input-group-rounded .input-group-field {
+  border-radius: 5000px 0 0 5000px;
+  padding-left: 1rem;
+
+}
+
+.input-group-rounded .input-group-button .button {
+  border-radius: 0 5000px 5000px 0;
+  font-size: 0.8rem;
+}
+

@@ -6,6 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css" integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display+SC:wght@400;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="style.css">
 
         <title>Working Code for Voter Dashboard</title>
@@ -16,26 +17,35 @@
         <nav class="top-bar">
             <div class="top-bar-left">
               <ul class="dropdown menu" data-dropdown-menu>
-                <li class="menu-text">Hawaii Voter Dashboard</li>
+                <li class="menu-text">Washington State Voter Dashboard</li>
               </ul>
             </div>
+            <div class="top-bar-center">
+              <a href="https://www.sos.wa.gov/elections/register.aspx" target="_blank"><button type="button" class="button">Register to Vote!</button></a>
+            </div>
             <div class="top-bar-right">
+              <p>Enter your zipcode here: </p>
               <ul class="menu">
-                <li>Enter your zipcode here: </li>
                 <li><input type="search" placeholder="Zip Code"></li>
-                <li><button type="button" class="button">submit</button></li>
+                <li><button type="button" class="button" id="submit">submit</button></li>
               </ul>
             </div>
         </nav>
 
         <header class="subnav-hero-section">
-            <h1 class="subnav-hero-headline">Voter Dashboard</h1>
+          <h1 class="subnav-hero-headline">Voter Dashboard</h1>
             <ul class="subnav-hero-subnav">
               <li><a href="#">Polling Stations</a></li>
               <li><a href="#" class="is-active">Candidate Information</a></li>
               <li><a href="#">News Search</a></li>
             </ul>
         </header>
+
+        <section>
+          <div class="row">
+
+          </div>
+        </section>
       
     </body>
 
