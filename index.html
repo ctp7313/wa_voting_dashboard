@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="style.css">
 
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
 
         <title>Working Code for Voter Dashboard</title>
     
@@ -42,22 +43,26 @@
         <section>
           <div class="grid-container">
             <div class="grid-x grid-padding-x" id="displays">
-              <!-- <div class="large-12 cell" id="introCard">
-                <h4 id="start-over">Start over with a different address.</h4>
-              </div> -->
               <div class="large-12 cell" id="introCard">
                 <div class="callout">
                   <h1>Do Your Research</h1>
                   <h3>Enter an address to view:</h3>
                   <ul>
+                    <li>The next election date</li>
                     <li>Information on local candidates</li>
                     <li>Nearby ballot drop-off boxes</li>
                     <li>News stories about Washington State elections</li>
                   </ul>
                   <input type="text" id="addressTextBox" placeholder="Enter full address: 123 Main St, Seattle, WA 98101">
                   <h5>*Your information will not be saved; it will only give perimeters to our search.*</h5>
-                  <button type="submit" class="button" id="enterAddress" onclick="saveAddress(event)" disabled>Search</button>
+                  <button type="submit" class="button" id="enterAddress">Search</button>
                 </div>
+              </div>
+              <div class="large-12 cell" id="next-election" style="display: none">
+                <div class="callout" id="electDates">
+                    <h2>The Next Election in Your Area</h2>
+                </div>
+              </div>
               </div>
               <div class="large-12 cell" id="boxMap" style="display: none">
                 <div class="callout">
@@ -67,17 +72,27 @@
                 </div>
               </div>
               <div class="large-12 cell" id="newsFeed" style="display: none">
-                <div class="callout">
+                <div class="callout" id="headlines">
                   <h2>Election Headlines</h2>
                   <!-- news feed code -->
-                  <p>News headlines with links to read more</p>
+                  <p>Read news about Washington State elections and officials from The New York Times.</p>
                 </div>
               </div>
               <div class="large-12 cell" id="canCards" style="display: none">
+                <div class="callout" id="candElem">
+                  <h2>Candidates on your Ballot</h2>
+                  <p>Information unavailable for Washington State</p>
+                </div>
+                <div class="callout" id="offElem">
+                  <h2>Your Elected Officials</h2>
+                </div>
+              </div>
+              <div class="large-12 cell" id="new-address" style="display: none">
                 <div class="callout">
-                  <h2>Candidates on Your Ballot</h2>
-                  <!-- candidate card code -->
-                  <p>grid of cards with names and other info</p>
+                    <h3>Start Over with a New Address</h3>
+                    <input type="text" id="addressTextBox" placeholder="Enter full address: 123 Main St, Seattle, WA 98101">
+                    <h5>*Your information will not be saved; it will only give perimeters to our search.*</h5>
+                    <button type="submit" class="button" id="enterAddress">Search</button>
                 </div>
               </div>
             </div>
@@ -85,6 +100,8 @@
         </section>
 
       <script src="script.js"></script>
+      <script src="news.js"></script>
+      <script src="officials.js"></script>
     </body>
 
 </html>
