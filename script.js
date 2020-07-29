@@ -13,14 +13,20 @@ $("#enterAddress").on("click", function() {
     newsFeed.style.display = "none";
     boxMap.style.display = "none";
 
-    var queryURL = "https://www.googleapis.com/civicinfo/v2/elections?key=AIzaSyC2P1VzZTKxbNe2mCjAdBB6vyTqH9u9ZOo";
+    var input = document.getElementById('addressTextBox').value;
+    var storeInput = encodeURIComponent(input);
+    localStorage.setItem("Address", storeInput);
+
+    var address = localStorage.getItem("Address")
+    var queryURL = "https://www.googleapis.com/civicinfo/v2/voterinfo?key=AIzaSyC2P1VzZTKxbNe2mCjAdBB6vyTqH9u9ZOo&address=" + address;
 
     $.ajax({
       url: queryURL,
       method: "GET"
     }).then(function(response) {
-        var electDate = moment(response.elections[4].electionDay).format("MMMM Do, YYYY");
-        var electType = response.elections[4].name;
+        var electDate = moment(response.election.electionDay).format("MMMM Do, YYYY");
+        var electType = response.election.name;
+        console.log(electType);
         $("#electDates").append([
             $("<h3>").text("Next Election: " + electType),
             $("<h4>").text("Date: " + electDate),

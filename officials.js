@@ -1,9 +1,4 @@
-
-
-$("#enterAddress").on("click", function() {
-  var input = document.getElementById('addressTextBox').value;
-  var storeInput = encodeURIComponent(input);
-  localStorage.setItem("Address", storeInput);
+$("#candidates").on("click", function() {
   
   var address = localStorage.getItem("Address");
   var queryURL = "https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyC2P1VzZTKxbNe2mCjAdBB6vyTqH9u9ZOo&address=" + address;
@@ -43,9 +38,9 @@ $("#enterAddress").on("click", function() {
                     $("<h3>", {
                         "id": "official-name"
                     }).text(name),
-                    $("<p>", {
-                        "id": "candidateOffice"
-                    }).text(response.offices[i].name),
+                    // $("<p>", {
+                    //     "id": "candidateOffice"
+                    // }).text(response.offices[i].name),
                     $("<p>", {
                         "id": "official-party"
                     }).text(party),
