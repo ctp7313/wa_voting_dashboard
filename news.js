@@ -1,48 +1,48 @@
-// NY Times API key: kCXM4UNYQwUVGiG3M2JDcTMPQQAGotk8
-$("#news").on("click", function() {
+var apiKeyNYT = "kCXM4UNYQwUVGiG3M2JDcTMPQQAGotk8";
+
+$("#news").on("click", function () {
+            var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=washington%20state%20elections&api-key=" + apiKeyNYT;
+
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            }).then(function (response) {
+
+                    var newsFeed = response.response.docs;
+
+                    for (var i = 0; i < newsFeed.length; i++) {
+                        var headline = response.response.docs[i].headline.main;
+                        var newsUrl = response.response.docs[i].web_url;
+                        var leadParagraph = response.response.docs[i].lead_paragraph;
+                        var newsDate = response.response.docs[i].pub_date;
 
 
-    for (var i = 0; i < 10; i++) {
-        $("<div>", {
-            class: "cell"
-        }).append([
-            $("<div>", {
-                "class": "card"
-            }).append([
-                $("<div>", {
-                    "class": "card-section"
-                }).append([
-                    // $("<img>", {
-                    //     "class": "float-left",
-                    //     "src": "https://via.placeholder.com/300x200",
-                    //     "style": "margin-right: 40px;",
-                    //     "alt": "Candidate's Portrait"
-                    // }),
-                    $("<h3>", {
-                        "id": "news-headline"
-                    }).text("Headline"),
-                    $("<p>", {
-                        "id": "news-source"
-                    }).text("News Source"),
-                    $("<p>", {
-                        "id": "date-posted"
-                    }).text("Date"),
-                    $("<a>", {
-                        "id": "external-link",
-                        "href": "https://berniesanders.com"
-                    }).text("Read the Article")
-                ])
-            ])
-        ]).appendTo("#headlines")
-    }
-})
-// function initMap() {
-//       var map = new google.maps.Map(document.getElementById('ballotMap'), {
-//         center: {lat: 47.751076, lng: -120.74135},
-//         zoom: 7,
-//       });
-//       console.log(map)
-// }
-
-//   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQbo8Y1Ywuo2Q9OWiofeBSHc7Agc13g9Q&callback=initMap"
-//   async defer></script>
+                        $("<div>", {
+                            "class": "cell"
+                        }).append([
+                            $("<div>", {
+                                "class": "card"
+                            }).append([
+                                $("<div>", {
+                                    "class": "card-section"
+                                }).append([
+                                    $("<h3>", {
+                                        "id": "news-headline"
+                                    }).text(headline),
+                                    $("<p>", {
+                                        "id": "news-lead"
+                                    }).text(leadParagraph),
+                                    $("<p>", {
+                                        "id": "date-posted"
+                                    }).text(newsDate),
+                                    $("<a>", {
+                                        "id": "external-link",
+                                        "href": newsUrl,
+                                        "target": "_blank"
+                                    }).text("Read the Article")
+                                ])
+                            ])
+                        ]).appendTo("#headlines")
+                    }
+                }
+)});
