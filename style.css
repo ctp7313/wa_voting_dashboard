@@ -67,6 +67,10 @@
     padding: 3rem;
   }
 
+  #map {
+    height: 300px;
+  }
+
 button {
   margin: 10px;
 }
@@ -102,7 +106,27 @@ h5 {
   font-size: 12px;
   font-weight: bold;
 }
-#map {
-  height: 300px;
+
+@media (max-width: 700px) {
+  .subnav-hero-section .subnav-hero-headline {
+    color: white;
+    font-family: 'Playfair Display SC', serif;
+    font-size: 45px;
+  }
+  .subnav-hero-subnav li a {
+    padding: 0.9rem 1rem;
+    font-size: 0.50rem;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    display: block;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: all 0.35s ease-in-out;
+  }
+  .menu-text {
+    font-family: 'Playfair Display SC', serif;
+    font-size: 18px;
+  }
 }
 

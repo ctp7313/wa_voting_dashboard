@@ -5,7 +5,7 @@ var canCards = document.getElementById("canCards");
 var newsFeed = document.getElementById("newsFeed");
 var boxMap = document.getElementById("boxMap");
 
-$("#enterAddress").on("click", function() {
+function saveAddress() {
     introCard.style.display = "none";
     startOver.style.display = "";
     electInfo.style.display = "";
@@ -13,28 +13,38 @@ $("#enterAddress").on("click", function() {
     newsFeed.style.display = "none";
     boxMap.style.display = "none";
 
+    window.localStorage.clear();
+    // $("#addressTextBox").val("");
+    $("#electDates").empty();
+
     var input = document.getElementById('addressTextBox').value;
     var storeInput = encodeURIComponent(input);
     localStorage.setItem("Address", storeInput);
 
-    var address = localStorage.getItem("Address")
-    var queryURL = "https://www.googleapis.com/civicinfo/v2/voterinfo?key=AIzaSyC2P1VzZTKxbNe2mCjAdBB6vyTqH9u9ZOo&address=" + address;
+    var address = localStorage.getItem("Address");
+    var queryURL = "https://www.googleapis.com/civicinfo/v2/voterinfo?key=AIzaSyDN6BpuzQ95UC-ErYDDGkPWtRbeGorvg8Q&address=" + address;
 
     $.ajax({
       url: queryURL,
       method: "GET"
     }).then(function(response) {
-        var electDate = moment(response.election.electionDay).format("MMMM Do, YYYY");
-        var electType = response.election.name;
-        console.log(electType);
-        $("#electDates").append([
-            $("<h3>").text("Next Election: " + electType),
-            $("<h4>").text("Date: " + electDate),
-            $("<p>").text("Find more information at the Washington Secretary of State website:"),
-            $("<a>").attr("href", "https://www.sos.wa.gov/elections/").text("www.sos.wa.gov/elections")
-        ])
+        if (response) {
+            var electDate = moment(response.election.electionDay).format("MMMM Do, YYYY");
+            var electType = response.election.name;
+            
+            $("#electDates").append([
+                $("<h3>").text("Next Election: " + electType),
+                $("<h4>").text("Date: " + electDate),
+                $("<p>").text("Find more information at the Washington Secretary of State website:"),
+                $("<a>").attr("href", "https://www.sos.wa.gov/elections/").text("www.sos.wa.gov/elections")
+        ])} else {
+            $("#electDates").append([
+                $("<h4>").text("Error: Address not read"),
+                $("<p>").text("Please enter the FULL address again below without any punctuation.")
+            ])
+        }
     })
-})
+}
 
 $("#ballots").on("click", function() {
     introCard.style.display = "none";
@@ -46,7 +56,6 @@ $("#ballots").on("click", function() {
     $("#ballots").attr("class","is-active");
     $("#candidates").attr("class","");
     $("#news").attr("class","");
-    // API CALL for info based on zip code
 })
 
 $("#candidates").on("click", function() {
@@ -59,7 +68,6 @@ $("#candidates").on("click", function() {
     $("#candidates").attr("class","is-active");
     $("#ballots").attr("class","");
     $("#news").attr("class","");
-    // API CALL for info based on zip code
 })
 
 $("#news").on("click", function() {
@@ -72,6 +80,5 @@ $("#news").on("click", function() {
     $("#news").attr("class","is-active");
     $("#candidates").attr("class","");
     $("#ballots").attr("class","");
-    // API CALL for info based on zip code
 })
 
