@@ -13,11 +13,9 @@ function saveAddress() {
     newsFeed.style.display = "none";
     boxMap.style.display = "none";
 
-    window.localStorage.clear();
-    // $("#addressTextBox").val("");
     $("#electDates").empty();
 
-    var input = document.getElementById('addressTextBox').value;
+    var input = document.getElementById("addressTextBox").value;
     var storeInput = encodeURIComponent(input);
     localStorage.setItem("Address", storeInput);
 
@@ -82,3 +80,41 @@ $("#news").on("click", function() {
     $("#ballots").attr("class","");
 })
 
+function newAddress() {
+    introCard.style.display = "none";
+    startOver.style.display = "";
+    electInfo.style.display = "";
+    canCards.style.display = "none";
+    newsFeed.style.display = "none";
+    boxMap.style.display = "none";
+
+    $("#electDates").empty();
+
+    var newInput = document.getElementById("newAddressBox").value;
+    var newStoreInput = encodeURIComponent(newInput);
+    localStorage.setItem("Address", newStoreInput);
+
+    var newAddress = localStorage.getItem("Address");
+    var queryURL = "https://www.googleapis.com/civicinfo/v2/voterinfo?key=AIzaSyDN6BpuzQ95UC-ErYDDGkPWtRbeGorvg8Q&address=" + newAddress;
+
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(function(response) {
+        if (response) {
+            var electDate = moment(response.election.electionDay).format("MMMM Do, YYYY");
+            var electType = response.election.name;
+            
+            $("#electDates").append([
+                $("<h3>").text("Next Election: " + electType),
+                $("<h4>").text("Date: " + electDate),
+                $("<p>").text("Find more information at the Washington Secretary of State website:"),
+                $("<a>").attr("href", "https://www.sos.wa.gov/elections/").text("www.sos.wa.gov/elections")
+        ])} else {
+            $("#electDates").append([
+                $("<h4>").text("Error: Address not read"),
+                $("<p>").text("Please enter the FULL address again below without any punctuation.")
+            ])
+        }
+    })
+}
