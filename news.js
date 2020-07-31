@@ -14,7 +14,7 @@ $("#news").on("click", function () {
                         var headline = response.response.docs[i].headline.main;
                         var newsUrl = response.response.docs[i].web_url;
                         var leadParagraph = response.response.docs[i].lead_paragraph;
-                        var newsDate = response.response.docs[i].pub_date;
+                        var newsDate = moment(response.response.docs[i].pub_date).format("MMMM Do, YYYY");
 
 
                         $("<div>", {
@@ -30,11 +30,12 @@ $("#news").on("click", function () {
                                         "id": "news-headline"
                                     }).text(headline),
                                     $("<p>", {
-                                        "id": "news-lead"
-                                    }).text(leadParagraph),
-                                    $("<p>", {
                                         "id": "date-posted"
                                     }).text(newsDate),
+                                    $("<p>", {
+                                        "id": "news-lead"
+                                    }).text(leadParagraph),
+
                                     $("<a>", {
                                         "id": "external-link",
                                         "href": newsUrl,
