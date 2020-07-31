@@ -1,7 +1,7 @@
 $("#candidates").on("click", function() {
   
   var address = localStorage.getItem("Address");
-  var queryURL = "https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyC2P1VzZTKxbNe2mCjAdBB6vyTqH9u9ZOo&address=" + address;
+  var queryURL = "https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyDN6BpuzQ95UC-ErYDDGkPWtRbeGorvg8Q&address=" + address;
 
     $.ajax({
         url: queryURL,
@@ -11,13 +11,13 @@ $("#candidates").on("click", function() {
     var officials = response.officials;
 
     for (var i = 0; i < officials.length; i++) {
-
-        var photoUrl = response.officials[i].photoUrl;
-        var name = response.officials[i].name;
-        var party = response.officials[i].party;
-        var phone = response.officials[i].phones;
-        var email = response.officials[i].emails;
-        var website = response.officials[i].urls;
+        
+        var photoUrl = officials[i].photoUrl;
+        var name = officials[i].name;
+        var party = officials[i].party;
+        var phone = officials[i].phones;
+        var email = officials[i].emails;
+        var website = officials[i].urls;
 
         $("<div>", {
             "class": "cell"
@@ -38,9 +38,9 @@ $("#candidates").on("click", function() {
                     $("<h3>", {
                         "id": "official-name"
                     }).text(name),
-                    // $("<p>", {
-                    //     "id": "candidateOffice"
-                    // }).text(response.offices[i].name),
+                    $("<p>", {
+                        "id": "candidateOffice"
+                    }),
                     $("<p>", {
                         "id": "official-party"
                     }).text(party),
@@ -49,12 +49,13 @@ $("#candidates").on("click", function() {
                     }).text("Contact Info: " + phone + " | " + email),
                     $("<a>", {
                         "id": "official-website",
-                        "href": website
+                        "href": website,
+                        "target": "_blank"
                     }).text(website)
                 ])
             ])
-        ]).appendTo("#offElem")}
+        ]).appendTo("#offElem")};
+
     });
-
-
 });
+
