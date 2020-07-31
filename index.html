@@ -55,7 +55,7 @@
                   </ul>
                   <input type="text" id="addressTextBox" placeholder="Enter full address: 123 Main St, Seattle, WA 98101">
                   <h5>*Your information will not be saved; it will only give perimeters to our search.*</h5>
-                  <button type="submit" class="button" id="enterAddress">Search</button>
+                  <button type="submit" class="button" id="enterAddress" onclick="saveAddress()">Search</button>
                 </div>
               </div>
               <div class="large-12 cell" id="next-election" style="display: none">
@@ -72,9 +72,8 @@
               </div>
               <div class="large-12 cell" id="newsFeed" style="display: none">
                 <div class="callout" id="headlines">
-                  <h2>Election Headlines</h2>
-                  <!-- news feed code -->
-                  <p>Read news about Washington State elections and officials from The New York Times.</p>
+                  <h2>Election Headlines<br />
+                  from The New York Times</h2>
                 </div>
               </div>
               <div class="large-12 cell" id="canCards" style="display: none">
@@ -89,9 +88,9 @@
               <div class="large-12 cell" id="new-address" style="display: none">
                 <div class="callout">
                     <h3>Start Over with a New Address</h3>
-                    <input type="text" id="addressTextBox" placeholder="Enter full address: 123 Main St, Seattle, WA 98101">
+                    <input type="text" id="newAddressBox" placeholder="Enter full address: 123 Main St, Seattle, WA 98101">
                     <h5>*Your information will not be saved; it will only give perimeters to our search.*</h5>
-                    <button type="submit" class="button" id="enterAddress">Search</button>
+                    <button type="submit" class="button" id="enterAddress" onclick="newAddress()">Search</button>
                 </div>
               </div>
             </div>
@@ -101,7 +100,6 @@
       <script src="script.js"></script>
       <script src="news.js"></script>
       <script src="officials.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQbo8Y1Ywuo2Q9OWiofeBSHc7Agc13g9Q"></script>
       <script src="ballots.js"></script>
     </body>
