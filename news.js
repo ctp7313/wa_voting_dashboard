@@ -35,6 +35,7 @@ $("#news").on("click", function () {
                                     $("<p>", {
                                         "id": "news-lead"
                                     }).text(leadParagraph),
+
                                     $("<a>", {
                                         "id": "external-link",
                                         "href": newsUrl,
