@@ -1,107 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css" integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display+SC:wght@400;700&display=swap">
-        <link rel="stylesheet" href="foundation.css">
-        <link rel="stylesheet" href="style.css">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css"
+    integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display+SC:wght@400;700&display=swap">
+  <link rel="stylesheet" href="styling/foundation.css">
+  <link rel="stylesheet" href="styling/style.css">
 
-        <title>Working Code for Voter Dashboard</title>
-    
-    </head>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
 
-    <body>
-        <nav class="top-bar">
-            <div class="top-bar-left">
-              <ul class="dropdown menu" data-dropdown-menu>
-                <li class="menu-text"><img src="assets/flag_seal-square.jpg" width="50px"></li>
-                <li class="menu-text">Washington State Voter Dashboard</li>
-              </ul>
-            </div>
-          
-            <div class="top-bar-right">
-              <a href="https://www.sos.wa.gov/elections/register.aspx" target="_blank"><button type="button" class="button">Register to Vote!</button></a>
-            </div>
-        </nav>
+  <title>Washington State Voter Dashboard</title>
+</head>
 
-        <header class="subnav-hero-section">
-          <h1 class="subnav-hero-headline">Voter Dashboard</h1>
-            <ul class="subnav-hero-subnav">
-              <li><a href="#" id="ballots">Ballot Drop-off</a></li>
-              <li><a href="#" id="candidates">Candidate Information</a></li>
-              <li><a href="#" id="news">News Search</a></li>
+<body>
+  <!-- Navbar -->
+  <nav class="top-bar">
+    <!-- Washington State Flag and site title -->
+    <div class="top-bar-left">
+      <ul class="dropdown menu" data-dropdown-menu>
+        <li class="menu-text"><img src="assets/flag_seal-square.jpg" width="50px"></li>
+        <li class="menu-text">Washington State Voter Dashboard</li>
+      </ul>
+    </div>
+    <!-- Voter Registration button -->
+    <div class="top-bar-right">
+      <a href="https://www.sos.wa.gov/elections/register.aspx" target="_blank"><button type="button"
+          class="button">Register to Vote!</button></a>
+    </div>
+  </nav>
+  <!-- Site Jumbotron and Tabs -->
+  <header class="subnav-hero-section">
+    <h1 class="subnav-hero-headline">Who. Where. What.</h1>
+    <ul class="subnav-hero-subnav">
+      <!-- Site Tabs -->
+      <li><a href="#" id="ballots">Ballot Drop-off</a></li>
+      <li><a href="#" id="candidates">Candidate Information</a></li>
+      <li><a href="#" id="news">News Feed</a></li>
+    </ul>
+  </header>
+  <!-- Tab Sections -->
+  <section>
+    <div class="grid-container">
+      <div class="grid-x grid-padding-x" id="displays">
+        <!-- Main Sections-->
+        <!-- Intro Card -->
+        <div class="large-12 cell" id="introCard">
+          <div class="callout">
+            <h1>Do Your Research</h1>
+            <h3>Enter an address to view:</h3>
+            <ul>
+              <li>The next election date</li>
+              <li>Information on local candidates and elected officials</li>
+              <li>Nearby ballot drop-off boxes</li>
+              <li>News stories about Washington State elections</li>
             </ul>
-        </header>
-
-        <section>
-          <div class="grid-container">
-            <div class="grid-x grid-padding-x" id="displays">
-              <div class="large-12 cell" id="introCard">
-                <div class="callout">
-                  <h1>Do Your Research</h1>
-                  <h3>Enter an address to view:</h3>
-                  <ul>
-                    <li>The next election date</li>
-                    <li>Information on local candidates</li>
-                    <li>Nearby ballot drop-off boxes</li>
-                    <li>News stories about Washington State elections</li>
-                  </ul>
-                  <input type="text" id="addressTextBox" placeholder="Enter full address: 123 Main St, Seattle, WA 98101">
-                  <h5>*Your information will not be saved; it will only give perimeters to our search.*</h5>
-                  <button type="submit" class="button" id="enterAddress" onclick="saveAddress()">Search</button>
-                </div>
-              </div>
-              <div class="large-12 cell" id="next-election" style="display: none">
-                <div class="callout" id="electDates">
-                    <h2>The Next Election in Your Area</h2>
-                </div>
-              </div>
-              </div>
-              <div class="large-12 cell" id="boxMap" style="display: none">
-                <div class="callout">
-                  <h2>Nearby Ballot Drop-off Locations</h2>
-                  <div id="map"></div>
-                </div>
-              </div>
-              <div class="large-12 cell" id="newsFeed" style="display: none">
-                <div class="callout" id="headlines">
-                  <h2>Election Headlines<br />
-                  from The New York Times</h2>
-                </div>
-              </div>
-              <div class="large-12 cell" id="canCards" style="display: none">
-                <div class="callout" id="candElem">
-                  <h2>Candidates on your Ballot</h2>
-                  <p>Information unavailable for Washington State</p>
-                </div>
-                <div class="callout" id="offElem">
-                  <h2>Your Elected Officials</h2>
-                </div>
-              </div>
-              <div class="large-12 cell" id="new-address" style="display: none">
-                <div class="callout">
-                    <h3>Start Over with a New Address</h3>
-                    <input type="text" id="newAddressBox" placeholder="Enter full address: 123 Main St, Seattle, WA 98101">
-                    <h5>*Your information will not be saved; it will only give perimeters to our search.*</h5>
-                    <button type="submit" class="button" id="enterAddress" onclick="newAddress()">Search</button>
-                </div>
-              </div>
-            </div>
+            <input type="text" id="addressTextBox" placeholder="Enter full address: 123 Main St, Seattle, WA 98101">
+            <h5>Your information will not be saved; it will only give parameters for our search.</h5>
+            <button type="submit" class="button" id="enterAddress" onclick="saveAddress()">Search</button>
           </div>
-        </section>
+        </div>
+      </div>
+      <!-- After Address Input, this card shows up -->
+      <div class="large-12 cell" id="next-election" style="display: none">
+        <div class="callout" id="electDates">
+          <h2>The Next Election in Your Area</h2>
+        </div>
+      </div>
+      <!-- Ballot Drop-Off locations -->
+      <div class="large-12 cell" id="boxMap" style="display: none">
+        <div class="callout">
+          <h2>Nearby Ballot Drop-off Locations</h2>
+          <div id="map"></div>
+        </div>
+      </div>
+      <!-- News Feed -->
+      <div class="large-12 cell" id="newsFeed" style="display: none">
+        <div class="callout" id="headlines">
+          <h2>Election Headlines<br />
+            from The New York Times</h2>
+        </div>
+      </div>
+      <!-- Candidates and Elected Officials -->
+      <div class="large-12 cell" id="canCards" style="display: none">
+        <div class="callout" id="candElem">
+          <h2>Candidates on your Ballot</h2>
+          <p>Information unavailable for Washington State</p>
+        </div>
+        <div class="callout" id="offElem">
+          <h2>Your Elected Officials</h2>
+        </div>
+      </div>
+      <!-- Address Re-Entry -->
+      <div class="large-12 cell" id="new-address" style="display: none">
+        <div class="callout">
+          <h3>Start Over with a New Address</h3>
+          <input type="text" id="newAddressBox" placeholder="Enter full address: 123 Main St, Seattle, WA 98101">
+          <h5>Your information will not be saved; it will only give parameters for our search.</h5>
+          <button type="submit" class="button" id="enterAddress" onclick="newAddress()">Search</button>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+  <!-- End Main Sections -->
 
-      <script src="script.js"></script>
-      <script src="news.js"></script>
-      <script src="officials.js"></script>
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQbo8Y1Ywuo2Q9OWiofeBSHc7Agc13g9Q"></script>
-      <script src="ballots.js"></script>
-    </body>
+  <!-- Scripts -->
+  <script src="scripts/script.js"></script>
+  <script src="scripts/news.js"></script>
+  <script src="scripts/officials.js"></script>
+  <!-- Google Maps API -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1FY77QAf3Bi0C10LB5CNI4-DBHHbX0rE"></script>
+  <script src="scripts/ballots.js"></script>
+</body>
 
 </html>
