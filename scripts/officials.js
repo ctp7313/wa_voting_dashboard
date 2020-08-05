@@ -8,15 +8,29 @@ $("#candidates").on("click", function () {
         method: "GET"
     }).then(function (response) {
 
+        var offices = response.offices;
+
+        for (let j = 2; j < offices.length; j++) {
+            var offIndex = offices[j].officialIndices;
+
+            for (let k = 0; k < offIndex.length; k++) {
+                sessionStorage.setItem(offIndex[k], offices[j].name);
+            }
+        }
+
         var officials = response.officials;
 
         for (var i = 2; i < officials.length; i++) {
-            var photoUrl = officials[i].photoUrl;
+            var photo = officials[i].photoUrl;
             var name = officials[i].name;
             var party = officials[i].party;
             var phone = officials[i].phones;
             var email = officials[i].emails;
             var website = officials[i].urls;
+            var office = sessionStorage.getItem(i);
+
+            // var offArray = Object.keys(officials[i]);
+            // console.log(offArray);
 
             $("<div>", {
                 "class": "cell"
@@ -29,17 +43,19 @@ $("#candidates").on("click", function () {
                     }).append([
                         $("<img>", {
                             "class": "float-left",
-                            "src": photoUrl,
+                            "src": photo,
                             "style": "margin-right: 40px;",
                             "width": "200px",
-                            "alt": "Portrait"
+                            "alt": "Portrait",
+                            "id": "portrait"
                         }),
                         $("<h3>", {
                             "id": "official-name"
                         }).text(name),
                         $("<p>", {
-                            "id": "candidateOffice"
-                        }),
+                            "id": "candidateOffice",
+                            "style": "font-weight: bold"
+                        }).text(office),
                         $("<p>", {
                             "id": "official-party"
                         }).text(party),
@@ -53,7 +69,8 @@ $("#candidates").on("click", function () {
                         }).text(website)
                     ])
                 ])
-            ]).appendTo("#offElem")
+            ]).appendTo("#offElem");
+
         };
     });
 });
