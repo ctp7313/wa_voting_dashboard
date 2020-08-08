@@ -3,6 +3,10 @@ $("#candidates").on("click", function () {
     var address = localStorage.getItem("Address");
     var queryURL = "https://www.googleapis.com/civicinfo/v2/representatives?key=" + apiKeyGCivic + "&address=" + address;
 
+    var officialDiv = document.getElementById("offElem");
+    var offHeader = $("<h2>").text("Your Elected Officials");
+    $(officialDiv).append(offHeader);
+
     $.ajax({
         url: queryURL,
         method: "GET"
@@ -28,8 +32,6 @@ $("#candidates").on("click", function () {
             var email = officials[i].emails || "email not provided";
             var website = officials[i].urls || "website not provided";
             var office = sessionStorage.getItem(i);
-
-            var officialDiv = document.getElementById("offElem");
 
             var cellDiv = $("<div>").attr("class", "cell");
             $(officialDiv).append(cellDiv);

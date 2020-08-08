@@ -14,7 +14,7 @@ function saveAddress() {
     newsFeed.style.display = "none";
     boxMap.style.display = "none";
 
-    $("#electDates").empty();
+    // $("#electDates").empty();
 
     var input = document.getElementById("addressTextBox").value;
     var storeInput = encodeURIComponent(input);
@@ -90,7 +90,7 @@ function newAddress() {
     newsFeed.style.display = "none";
     boxMap.style.display = "none";
 
-    $("#electDates").empty();
+    $("#offElem").empty();
 
     var newInput = document.getElementById("newAddressBox").value;
     var newStoreInput = encodeURIComponent(newInput);
