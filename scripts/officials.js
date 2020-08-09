@@ -3,9 +3,7 @@ $("#candidates").on("click", function () {
     var address = localStorage.getItem("Address");
     var queryURL = "https://www.googleapis.com/civicinfo/v2/representatives?key=" + apiKeyGCivic + "&address=" + address;
 
-    var officialDiv = document.getElementById("offElem");
-    var offHeader = $("<h2>").text("Your Elected Officials");
-    $(officialDiv).append(offHeader);
+    var officialDiv = document.getElementById("offGrid");
 
     $.ajax({
         url: queryURL,
@@ -33,40 +31,64 @@ $("#candidates").on("click", function () {
             var website = officials[i].urls || "website not provided";
             var office = sessionStorage.getItem(i);
 
-            var cellDiv = $("<div>").attr("class", "cell");
-            $(officialDiv).append(cellDiv);
+            var cellDiv = $("<div>").attr({
+                "class": "medium-6 large-4 cell"
+                });
+                $(officialDiv).append(cellDiv);
 
-            var cardDiv = $("<div>").attr("class", "card");
-            $(cellDiv).append(cardDiv);
+            var cardDiv = $("<div>").attr({
+                "class": "card"
+                });
+                $(cellDiv).append(cardDiv);
 
-            var sectionDiv = $("<div>").attr("class", "card-section");
-            $(cardDiv).append(sectionDiv);
+            var sectionDiv = $("<div>").attr({
+                "class": "card-section"
+                });
+                $(cardDiv).append(sectionDiv);
 
-            var portraitImg = $("<img>").attr({"class": "float-left", "style": "margin-right: 40px", "width": "200px", "alt": "Portrait", "id": "portrait"});
-            if (photo) {
-                $(portraitImg).attr("src", photo);
-                $(sectionDiv).append(portraitImg);
-            }
+            var portraitImg = $("<img>").attr({
+                "class": "float-center",
+                "style": "margin-right: 40px",
+                "width": "200px",
+                "alt": "Portrait",
+                "id": "portrait"
+                });
+                if (photo) {
+                    $(portraitImg).attr({
+                        "src": photo
+                    });
+                    $(sectionDiv).append(portraitImg)
+                };
 
-            var offName = $("<h3>").attr("id", "official-name");
-            $(offName).text(name);
-            $(sectionDiv).append(offName);
+            var offName = $("<h3>").attr({
+                "id": "official-name"
+                });
+                $(offName).text(name);
 
-            var offOffice = $("<p>").attr({"id": "official-office", "style": "font-weight: bold"});
-            $(offOffice).text(office);
-            $(sectionDiv).append(offOffice);
-            
-            var offParty = $("<p>").attr("id", "official-party");
-            $(offParty).text(party);
-            $(sectionDiv).append(offParty);
+            var offOffice = $("<p>").attr({
+                "id": "official-office",
+                "style": "font-weight: bold"
+                });
+                $(offOffice).text(office);
 
-            var offContact = $("<p>").attr("id", "official-contact");
-            $(offContact).text("Contact Info: " + phone + " | " + email);
-            $(sectionDiv).append(offContact);
+            var offParty = $("<p>").attr({
+                "id": "official-party",
+                "style": "font-style: italic"
+                });
+                $(offParty).text(party);
 
-            var offWebsite = $("<a>").attr({"id": "official-website", "target": "_blank"});
-            $(offWebsite).attr("href", website).text(website);
-            $(sectionDiv).append(offWebsite);
+            var offContact = $("<p>").attr({
+                "id": "official-contact"
+                });
+                $(offContact).html("Contact Info:" + "<br/>" + phone + "<br/>" + email);
+
+            var offWebsite = $("<a>").attr({
+                "id": "official-website",
+                "target": "_blank"
+                });
+                $(offWebsite).attr("href", website).text("More information");
+
+            $(sectionDiv).append(offName, offOffice, offParty, offContact, offWebsite);
 
         };
     });

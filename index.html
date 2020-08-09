@@ -25,14 +25,15 @@
     <!-- Washington State Flag and site title -->
     <div class="top-bar-left">
       <ul class="dropdown menu" data-dropdown-menu>
-        <li class="menu-text"><img src="assets/flag_seal-square.jpg" width="50px"></li>
+        <li class="menu-text"><img src="assets/flag_seal-square.jpg" width="50" alt="Washington State Seal"></li>
         <li class="menu-text">Washington State Voter Dashboard</li>
       </ul>
     </div>
     <!-- Voter Registration button -->
     <div class="top-bar-right">
-      <a href="https://www.sos.wa.gov/elections/register.aspx" target="_blank"><button type="button"
-          class="button">Register to Vote!</button></a>
+      <a class="button" href="https://www.sos.wa.gov/elections/register.aspx" target="_blank">
+        Register to Vote!
+      </a>
     </div>
   </nav>
   <!-- Site Jumbotron and Tabs -->
@@ -53,7 +54,7 @@
         <!-- Intro Card -->
         <div class="large-12 cell" id="introCard">
           <div class="callout">
-            <h1>Do Your Research</h1>
+            <h2>Do Your Research</h2>
             <h3>Enter an address to view:</h3>
             <ul>
               <li>The next election date</li>
@@ -92,9 +93,14 @@
         <div class="callout" id="candElem">
           <h2>Candidates on your Ballot</h2>
           <p>Information unavailable for Washington State</p>
+          <div class="grid-x grid-margin-x" id="candGrid">
+          </div>
+
         </div>
         <div class="callout" id="offElem">
           <h2>Your Elected Officials</h2>
+          <div class="grid-x grid-margin-x" id="offGrid">
+          </div>
         </div>
       </div>
       <!-- Address Re-Entry -->
@@ -103,10 +109,9 @@
           <h3>Start Over with a New Address</h3>
           <input type="text" id="newAddressBox" placeholder="Enter full address: 123 Main St, Seattle, WA 98101">
           <h5>Your information will not be saved; it will only give parameters for our search.</h5>
-          <button type="submit" class="button" id="enterAddress" onclick="newAddress()">Search</button>
+          <button type="submit" class="button" id="newAddress" onclick="newAddress()">Search</button>
         </div>
       </div>
-    </div>
     </div>
   </section>
   <!-- End Main Sections -->
